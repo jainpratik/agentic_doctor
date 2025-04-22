@@ -1,0 +1,32 @@
+streamlit
+neo4j
+pandas
+faiss-cpu
+sentence-transformers
+langchain
+openai
+tqdm
+networkx
+matplotlib
+tiktoken
+dotenv
+langchain-community
+streamlit-option-menu
+docx2txt
+PyMuPDF
+python-dotenv
+streamlit
+langchain
+openai
+neo4j
+pytesseract
+pdf2image
+Pillow
+fpdf
+bcrypt
+layoutparser
+pillow
+# For OCR
+opencv-python
+langgraph
+# For PDF processing
