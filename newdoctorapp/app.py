@@ -82,7 +82,6 @@ def color_metric(val, good="high"):
 
 def run():
     st.title("🩺 Agentic Doctor Dashboard")
-    st.markdown("## Welcome to the Agentic Doctor Dashboard!")
     st.markdown("### Your AI-Powered Medical Assistant")
     st.markdown(
         "This dashboard provides a comprehensive overview of patient data, lab reports, and care plans. "
@@ -280,19 +279,9 @@ def run():
         st.subheader("📝 Care Plan")
         if st.button("📝 Generate Care Plan"):
             # Generate Care Plan
-            st.session_state.response_with_graph = st.session_state.response_with_graph
-            st.session_state.response_without_graph = (
-                st.session_state.response_without_graph
-            )
-            if (
-                st.session_state.response_with_graph is None
-                or st.session_state.response_without_graph is None
-            ):
-                st.warning("Please generate a response first.")
-            else:
-                # Generate care plan based on the response with graph data
-                selected_patient = st.session_state["selected_patient"]
-                #
+
+            selected_patient = st.session_state["selected_patient"]
+
             analysis = st.session_state.response_with_graph
             st.markdown("### Care Plan Analysis")
             care_plan = generate_care_plan(selected_patient, analysis)
@@ -346,19 +335,27 @@ def run():
             st.metric("Exact Match", "Yes" if metrics["Exact Match"] else "No")
 
     with tab5:
-        temperatures = [0.0, 0.2, 0.4, 0.6, 0.8]
+        temperatures = [0.2, 0.4, 0.6, 0.8, 1.0]
         results = []
 
         if st.button("🚀 Run Full Temperature Experiment"):
 
+            # this is baseline response with the temparature as zero
+            response_with_graph = st.session_state.response_with_graph
+            response_without_graph = st.session_state.response_without_graph
+            if (
+                st.session_state.response_with_graph is None
+                or st.session_state.response_without_graph is None
+            ):
+                st.warning("Please generate a response first.")
             st.subheader("🚀 Running Temperature Sensitivity Experiment...")
             st.markdown(
                 "This may take a few minutes. Please be patient while we run the experiment."
             )
             st.markdown("### Experiment Parameters")
             st.markdown(f"**Model:** {llm_name}")
-            prompt_with_graph = st.session_state.prompt_with_graph
-            prompt_without = st.session_state.prompt_without
+            # prompt_with_graph = st.session_state.prompt_with_graph
+            # prompt_without = st.session_state.prompt_without
             for temp in temperatures:
                 st.write(f"Running at Temperature {temp}...")
 
@@ -368,13 +365,18 @@ def run():
                 # WITHOUT Knowledge Graph
                 response_plain = llm.invoke(prompt_without)
                 metrics_plain = calculate_all_metrics(
-                    prompt_without, response_plain.content
+                    response_without_graph, response_plain.content
                 )
 
                 # WITH Knowledge Graph
+                # we are changing the temparature and comparing that against the baseline
                 response_graph = llm.invoke(prompt_with_graph)
                 metrics_graph = calculate_all_metrics(
-                    prompt_with_graph, response_graph.content
+                    response_with_graph, response_graph.content
+                )
+
+                metrics_graph_plain = calculate_all_metrics(
+                    response_plain.content, response_graph.content
                 )
 
                 results.append(
@@ -391,6 +393,15 @@ def run():
                         "Temperature": temp,
                         "Mode": "With Graph",
                         **metrics_graph,
+                        "Response": response_graph.content,
+                    }
+                )
+
+                results.append(
+                    {
+                        "Temperature": temp,
+                        "Mode": "With Graph",
+                        **metrics_graph_plain,
                         "Response": response_graph.content,
                     }
                 )
