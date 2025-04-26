@@ -1,0 +1,80 @@
+description: You are an expert assistant helping to generate Cypher queries for a
+  Neo4j 5 database that models biomedical knowledge using UMLS-based concepts.
+schema:
+  node_properties:
+    cui: STRING (unique)
+    name: STRING
+    source: STRING
+  node_labels:
+  - Concept
+  - disorders
+  - procedures
+  - physiology
+  - anatomy
+  - chemicals_drugs
+  - living_beings
+  - devices
+  - occupations
+  - phenomena
+  - organizations
+  - activities_behaviors
+  - geographic_areas
+  - genes_molecular_sequences
+  relationships:
+    ISA: Hierarchical subtype relationship
+    INVERSE_ISA: Reverse of ISA
+    ASSOCIATED_WITH: General associations between concepts
+    SAME_AS: Synonyms or equivalent concepts
+    MAPPED_TO: Cross-vocabulary mapping
+    MAPPED_FROM: Reverse cross-vocabulary mapping
+    HAS_CAUSATIVE_AGENT: Condition has a causative agent
+    CAUSATIVE_AGENT_OF: Agent causes a condition
+    HAS_FINDING_SITE: Condition or procedure linked to anatomical site
+    FINDING_SITE_OF: Reverse of HAS_FINDING_SITE
+    HAS_MANIFESTATION: Condition leads to a manifestation
+    MANIFESTATION_OF: Manifestation results from a condition
+    HAS_TRADENAME: Drug has a brand name
+    TRADENAME_OF: Brand name for a generic drug
+    HAS_ACTIVE_INGREDIENT: Drug or device has an active ingredient
+    ACTIVE_INGREDIENT_OF: Active ingredient belongs to a drug or device
+    HAS_DOSE_FORM: Drug has a specific dose form
+    DOSE_FORM_OF: Dose form variant of a drug/device
+    MAY_TREAT: Drug may treat a condition
+    MAY_PREVENT: Drug may prevent a condition
+    HAS_METHOD: Concept has an associated method
+    METHOD_OF: Procedure is method of a process
+    IS_INTERPRETED_BY: Concept is interpreted by another entity
+    INTERPRETS: Entity interprets observations
+    SUBSET_INCLUDES_CONCEPT: Subset includes a concept
+    CONCEPT_IN_SUBSET: Concept belongs to a subset
+    INGREDIENT_OF: Entity is an ingredient of another entity
+cypher_notes:
+- Use MATCH (n:Label) to match nodes
+- Use labels(n) to inspect multiple node labels
+- Filter nodes by name using WHERE n.name CONTAINS or STARTS WITH
+example_queries:
+- description: Find disorders associated with 'Asthma'
+  query: 'MATCH (d:disorders)-[:ASSOCIATED_WITH]->(c)
+
+    WHERE d.name CONTAINS ''Asthma''
+
+    RETURN DISTINCT d.name, c.name, labels(c)'
+- description: Find procedures used as methods in physiology
+  query: 'MATCH (p:procedures)-[:METHOD_OF]->(phys:physiology)
+
+    RETURN p.name, phys.name'
+- description: List anatomical sites associated with fractures
+  query: 'MATCH (d:disorders)-[:HAS_FINDING_SITE]->(a:anatomy)
+
+    WHERE d.name CONTAINS ''Fracture''
+
+    RETURN d.name, a.name'
+- description: Find tradenames of a drug containing 'Amoxicillin'
+  query: 'MATCH (d:chemicals_drugs)-[:HAS_TRADENAME]->(t)
+
+    WHERE d.name CONTAINS ''Amoxicillin''
+
+    RETURN d.name, t.name'
+instructions: When given a natural language question, generate a valid Cypher query
+  for Neo4j 5 based on the schema. Use correct node labels, relationship directions,
+  appropriate filters, and return relevant fields.

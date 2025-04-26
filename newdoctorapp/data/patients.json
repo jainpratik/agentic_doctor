@@ -1,0 +1,115 @@
+[
+  {
+    "id": "P001",
+    "name": "John Carter",
+    "age": 58,
+    "sex": "male",
+    "symptoms": ["chest pain", "shortness of breath", "sweating"],
+    "history": ["diabetes", "hypertension", "obesity"]
+  },
+  {
+    "id": "P002",
+    "name": "Emma Davis",
+    "age": 62,
+    "sex": "female",
+    "symptoms": ["persistent cough", "fever", "night sweats"],
+    "history": ["smoking", "chronic bronchitis"]
+  },
+  {
+    "id": "P003",
+    "name": "Henry Moore",
+    "age": 76,
+    "sex": "male",
+    "symptoms": ["confusion", "slurred speech", "weakness on one side"],
+    "history": ["atrial fibrillation", "hypertension"]
+  },
+  {
+    "id": "P004",
+    "name": "Sophia Taylor",
+    "age": 47,
+    "sex": "female",
+    "symptoms": ["abdominal pain", "vomiting", "nausea"],
+    "history": ["alcohol abuse", "pancreatitis"]
+  },
+  {
+    "id": "P005",
+    "name": "Olivia Wilson",
+    "age": 29,
+    "sex": "female",
+    "symptoms": ["joint pain", "skin rash", "fever"],
+    "history": ["systemic lupus erythematosus", "rheumatoid arthritis"]
+  },
+  {
+    "id": "P006",
+    "name": "Liam Anderson",
+    "age": 65,
+    "sex": "male",
+    "symptoms": ["severe headache", "blurred vision", "nausea"],
+    "history": ["uncontrolled hypertension", "chronic kidney disease"]
+  },
+  {
+    "id": "P007",
+    "name": "Isabella Thomas",
+    "age": 51,
+    "sex": "female",
+    "symptoms": ["urinary frequency", "burning urination", "fever"],
+    "history": ["diabetes", "recurrent urinary tract infections"]
+  },
+  {
+    "id": "P008",
+    "name": "James Martinez",
+    "age": 72,
+    "sex": "male",
+    "symptoms": ["leg swelling", "shortness of breath", "fatigue"],
+    "history": ["congestive heart failure", "coronary artery disease"]
+  },
+  {
+    "id": "P009",
+    "name": "Mia Hernandez",
+    "age": 63,
+    "sex": "female",
+    "symptoms": ["severe back pain", "numbness in legs", "difficulty walking"],
+    "history": ["recent trauma", "osteoporosis"]
+  },
+  {
+    "id": "P010",
+    "name": "Noah Robinson",
+    "age": 39,
+    "sex": "male",
+    "symptoms": ["dizziness", "palpitations", "fatigue"],
+    "history": ["hypothyroidism", "anemia"]
+  },
+  {
+    "id": "P011",
+    "name": "Alice Smith",
+    "age": 45,
+    "sex": "Female",
+    "symptoms": "Fatigue, dizziness",
+    "history": "History of hypertension"
+  },
+  {
+    "id": "P012",
+    "name": "Alex Morgan",
+    "age": 67,
+    "sex": "Male",
+    "symptoms": "Shortness of breath",
+    "history": "History of COPD"
+  },
+  {
+    "id": "P013",
+    "name": "David Lee",
+    "age": 52,
+    "sex": "Female",
+    "symptoms": "Chest pain",
+    "history": "No known cardiac history"
+  },
+  {
+    "id": "P014",
+    "name": "John Doe",
+    "age": 55,
+    "sex": "Male",
+    "last_visit": "2024-04-15",
+    "symptoms": "Chest Pain",
+    "history": "cardiac history"
+  }
+]

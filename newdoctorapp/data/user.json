@@ -1,0 +1,17 @@
+[
+  {
+    "username": "doctor",
+    "password": "ai123",
+    "role": "doctor"
+  },
+  {
+    "username": "nurse1",
+    "password": "nursepass",
+    "role": "nurse"
+  },
+  {
+    "username": "admin",
+    "password": "adminpass",
+    "role": "admin"
+  }
+]
