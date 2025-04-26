@@ -1,9 +1,0 @@
-{
-  "patient_id": "test_patient",
-  "timestamp": "20250420_202907",
-  "input_notes": "Patient has a fever and cough.",
-  "symptoms": [
-    "fever",
-    "cough"
-  ],
-  "hypothesis": 
